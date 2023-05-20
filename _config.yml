@@ -1,10 +1,9 @@
-title: Hyde
+title: kimjeyoun
 description: >-
-  Build your own portfolio <br>
-  with Hyde.
-url: "https://chemistryx.me"
-github: ChemistryX
-email: changeme@chemistryx.me
+  kimjeyoun's portfolio.
+url: "https://kimjeyoun.github.io"
+github: kimjeyoun
+email: wodbs5602@naver.com
 google_analytics: <YOUR UA TOKEN>
 
 exclude: [README.md, Gemfile, Gemfile.lock]
