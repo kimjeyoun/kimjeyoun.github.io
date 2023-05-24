@@ -1,7 +1,6 @@
 <header class="hyde header {% if page.url == "/" %}main{% endif %}">
   <nav class="hyde navbar-parent {% if page.url == "/" %}main{% endif %}">
-    <!-- {% assign pages = site.pages | sort:'url' %} -->
-    {% assign sorted_pages = pages | sort: 'order' %}
+    {% assign pages = site.pages | sort:'url' %}
     <div class="hyde mobile-nav-wrapper">
       <div class="hyde container">
         <ul class="hyde mobile-nav">
@@ -28,9 +27,8 @@
           <a href="{{ p.url }}">{{ p.title }}</a>
         </li>
         {% endif %} {% endfor %} -->
-        {% for p in sorted_pages %}
-        {% if p.visible == true %}
-        {% assign url = page.url | split: '/' %}
+        {% assign sorted_pages = pages | sort: 'order' %}
+        {% for p in sorted_pages %} {% if p.visible == true %} {% assign url = page.url | split: '/' %}
         {% if p.title == 'About' or p.title == 'Projects' or p.title == 'Blog' or p.title == 'Portfolio' %}
         <li class="hyde nav-item{% if p.url contains url[1] %} active {% endif %}">
           <a href="{{ p.url }}">{{ p.title }}</a>
