@@ -8,7 +8,7 @@
             <a class="hyde mobile-nav-item logo" href="/"><i class="fas fa-meteor"></i> {{ site.title }}</a>
             <a class="hyde mobile-nav-item close-btn"><i class="fas fa-times"></i></a>
           </div>
-          {% assign nav_order = "ABOUT,PROJECTS,BLOG,PORTFOLIO" | split: ',' %}
+          {% assign nav_order = "ABOUT PROJECTS BLOG PORTFOLIO" | split: ' ' %}
           {% for order in nav_order %}
             {% for p in pages %}
               {% if p.visible == true and p.title == order %}
