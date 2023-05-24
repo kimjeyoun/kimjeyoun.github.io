@@ -1,7 +1,6 @@
 <header class="hyde header {% if page.url == "/" %}main{% endif %}">
   <nav class="hyde navbar-parent {% if page.url == "/" %}main{% endif %}">
-    {% assign pages = site.pages %}
-    {% assign order = "ABOUT BLOG PORTFOLIO PROJECTS" | split: "/" %}
+    {% assign pages = site.pages | sort:'url' %}
     <div class="hyde mobile-nav-wrapper">
       <div class="hyde container">
         <ul class="hyde mobile-nav">
@@ -9,12 +8,9 @@
             <a class="hyde mobile-nav-item logo" href="/"><i class="fas fa-meteor"></i> {{ site.title }}</a>
             <a class="hyde mobile-nav-item close-btn"><i class="fas fa-times"></i></a>
           </div>
-          {% for title in order %}
-            {% assign page = pages | where: 'title', title | first %}
-            {% if page.visible == true %}
-              <a class="hyde mobile-nav-item{% if page.url contains url[1] %} active {% endif %}" href="{{ page.url }}">{{ page.title }}</a>
-            {% endif %}
-          {% endfor %}
+          {% for p in pages %} {% if p.visible == true %} {% assign url = page.url | split: '/' %}
+          <a class="hyde mobile-nav-item{% if p.url contains url[1] %} active {% endif %}" href="{{ p.url }}">{{ p.title }}</a>
+          {% endif %} {% endfor %}
         </ul>
       </div>
     </div>
@@ -26,14 +22,11 @@
         <li class="hyde nav-toggler">
           <a class="hyde nav-toggle-btn"><i class="fas fa-bars"></i></a>
         </li>
-        {% for title in order %}
-          {% assign page = pages | where: 'title', title | first %}
-          {% if page.visible == true %}
-            <li class="hyde nav-item{% if page.url contains url[1] %} active {% endif %}">
-              <a href="{{ page.url }}">{{ page.title }}</a>
-            </li>
-          {% endif %}
-        {% endfor %}
+        {% for p in pages %} {% if p.visible == true %} {% assign url = page.url | split: '/' %}
+        <li class="hyde nav-item{% if p.url contains url[1] %} active {% endif %}">
+          <a href="{{ p.url }}">{{ p.title }}</a>
+        </li>
+        {% endif %} {% endfor %}
       </ul>
     </div>
   </nav>
