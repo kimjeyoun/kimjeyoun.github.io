@@ -1,7 +1,7 @@
 <header class="hyde header {% if page.url == "/" %}main{% endif %}">
   <nav class="hyde navbar-parent {% if page.url == "/" %}main{% endif %}">
     {% assign pages = site.pages %}
-    {% assign order = "ABOUT BLOG PORTFOLIO PROJECTS" | split: " " %}
+    {% assign order = "ABOUT BLOG PORTFOLIO PROJECTS" | split: "/" %}
     <div class="hyde mobile-nav-wrapper">
       <div class="hyde container">
         <ul class="hyde mobile-nav">
