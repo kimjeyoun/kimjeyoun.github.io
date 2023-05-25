@@ -1,6 +1,6 @@
 <header class="hyde header {% if page.url == "/" %}main{% endif %}">
   <nav class="hyde navbar-parent {% if page.url == "/" %}main{% endif %}">
-    {% assign pages = site.pages | sort_by: 'title' %}
+    {% assign pages = site.pages | sort:'title' %}
     <div class="hyde mobile-nav-wrapper">
       <div class="hyde container">
         <ul class="hyde mobile-nav">
@@ -8,12 +8,9 @@
             <a class="hyde mobile-nav-item logo" href="/"><i class="fas fa-meteor"></i> {{ site.title }}</a>
             <a class="hyde mobile-nav-item close-btn"><i class="fas fa-times"></i></a>
           </div>
-          {% for p in pages %}
-            {% if p.visible == true %}
-              {% assign url = page.url | split: '/' %}
-              <a class="hyde mobile-nav-item{% if p.url contains url[1] %} active {% endif %}" href="{{ p.url }}">{{ p.title }}</a>
-            {% endif %}
-          {% endfor %}
+          {% for p in pages %} {% if p.visible == true %} {% assign url = page.url | split: '/' %}
+          <a class="hyde mobile-nav-item{% if p.url contains url[1] %} active {% endif %}" href="{{ p.url }}">{{ p.title }}</a>
+          {% endif %} {% endfor %}
         </ul>
       </div>
     </div>
@@ -25,14 +22,30 @@
         <li class="hyde nav-toggler">
           <a class="hyde nav-toggle-btn"><i class="fas fa-bars"></i></a>
         </li>
-        {% for p in pages %}
-          {% if p.visible == true %}
-            {% assign url = page.url | split: '/' %}
-            <li class="hyde nav-item{% if p.url contains url[1] %} active {% endif %}">
-              <a href="{{ p.url }}">{{ p.title }}</a>
-            </li>
-          {% endif %}
-        {% endfor %}
+        {% for p in pages %} {% if p.visible == true %} {% assign url = page.url | split: '/' %}
+        {% if p.title == "ABOUT" %}
+        <li class="hyde nav-item{% if p.url contains url[1] %} active {% endif %}">
+          <a href="{{ p.url }}">{{ p.title }}</a>
+        </li>
+        {% endif %} {% endif %} {% endfor %}
+        {% for p in pages %} {% if p.visible == true %} {% assign url = page.url | split: '/' %}
+        {% if p.title == "PROJECTS" %}
+        <li class="hyde nav-item{% if p.url contains url[1] %} active {% endif %}">
+          <a href="{{ p.url }}">{{ p.title }}</a>
+        </li>
+        {% endif %} {% endif %} {% endfor %}
+        {% for p in pages %} {% if p.visible == true %} {% assign url = page.url | split: '/' %}
+        {% if p.title == "BLOG" %}
+        <li class="hyde nav-item{% if p.url contains url[1] %} active {% endif %}">
+          <a href="{{ p.url }}">{{ p.title }}</a>
+        </li>
+        {% endif %} {% endif %} {% endfor %}
+        {% for p in pages %} {% if p.visible == true %} {% assign url = page.url | split: '/' %}
+        {% if p.title == "PORTFOLIO" %}
+        <li class="hyde nav-item{% if p.url contains url[1] %} active {% endif %}">
+          <a href="{{ p.url }}">{{ p.title }}</a>
+        </li>
+        {% endif %} {% endif %} {% endfor %}
       </ul>
     </div>
   </nav>
