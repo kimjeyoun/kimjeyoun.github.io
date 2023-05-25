@@ -1,6 +1,27 @@
 <header class="hyde header {% if page.url == "/" %}main{% endif %}">
   <nav class="hyde navbar-parent {% if page.url == "/" %}main{% endif %}">
     {% assign pages = site.pages | sort:'url' %}
+    
+    <!-- ABOUT 페이지 -->
+    {% assign about_page = site.pages | where:'title','About' | first %}
+    {% assign pages = pages | remove:about_page %}
+    {% assign pages = pages | prepend:about_page %}
+
+    <!-- PROJECTS 페이지 -->
+    {% assign projects_page = site.pages | where:'title','Projects' | first %}
+    {% assign pages = pages | remove:projects_page %}
+    {% assign pages = pages | prepend:projects_page %}
+
+    <!-- BLOG 페이지 -->
+    {% assign blog_page = site.pages | where:'title','Blog' | first %}
+    {% assign pages = pages | remove:blog_page %}
+    {% assign pages = pages | prepend:blog_page %}
+
+    <!-- PORTFOLIO 페이지 -->
+    {% assign portfolio_page = site.pages | where:'title','Portfolio' | first %}
+    {% assign pages = pages | remove:portfolio_page %}
+    {% assign pages = pages | prepend:portfolio_page %}
+
     <div class="hyde mobile-nav-wrapper">
       <div class="hyde container">
         <ul class="hyde mobile-nav">
