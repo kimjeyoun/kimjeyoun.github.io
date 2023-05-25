@@ -1,27 +1,6 @@
 <header class="hyde header {% if page.url == "/" %}main{% endif %}">
   <nav class="hyde navbar-parent {% if page.url == "/" %}main{% endif %}">
-    {% assign pages = site.pages | sort:'url' %}
-    
-    <!-- ABOUT 페이지 -->
-    {% assign about_page = site.pages | where:'title','About' | first %}
-    {% assign pages = pages | remove:about_page %}
-    {% assign pages = pages | prepend:about_page %}
-
-    <!-- PROJECTS 페이지 -->
-    {% assign projects_page = site.pages | where:'title','Projects' | first %}
-    {% assign pages = pages | remove:projects_page %}
-    {% assign pages = pages | prepend:projects_page %}
-
-    <!-- BLOG 페이지 -->
-    {% assign blog_page = site.pages | where:'title','Blog' | first %}
-    {% assign pages = pages | remove:blog_page %}
-    {% assign pages = pages | prepend:blog_page %}
-
-    <!-- PORTFOLIO 페이지 -->
-    {% assign portfolio_page = site.pages | where:'title','Portfolio' | first %}
-    {% assign pages = pages | remove:portfolio_page %}
-    {% assign pages = pages | prepend:portfolio_page %}
-
+    {% assign pages = site.pages | sort_by: 'title' %}
     <div class="hyde mobile-nav-wrapper">
       <div class="hyde container">
         <ul class="hyde mobile-nav">
@@ -29,9 +8,12 @@
             <a class="hyde mobile-nav-item logo" href="/"><i class="fas fa-meteor"></i> {{ site.title }}</a>
             <a class="hyde mobile-nav-item close-btn"><i class="fas fa-times"></i></a>
           </div>
-          {% for p in pages %} {% if p.visible == true %} {% assign url = page.url | split: '/' %}
-          <a class="hyde mobile-nav-item{% if p.url contains url[1] %} active {% endif %}" href="{{ p.url }}">{{ p.title }}</a>
-          {% endif %} {% endfor %}
+          {% for p in pages %}
+            {% if p.visible == true %}
+              {% assign url = page.url | split: '/' %}
+              <a class="hyde mobile-nav-item{% if p.url contains url[1] %} active {% endif %}" href="{{ p.url }}">{{ p.title }}</a>
+            {% endif %}
+          {% endfor %}
         </ul>
       </div>
     </div>
@@ -43,11 +25,14 @@
         <li class="hyde nav-toggler">
           <a class="hyde nav-toggle-btn"><i class="fas fa-bars"></i></a>
         </li>
-        {% for p in pages %} {% if p.visible == true %} {% assign url = page.url | split: '/' %}
-        <li class="hyde nav-item{% if p.url contains url[1] %} active {% endif %}">
-          <a href="{{ p.url }}">{{ p.title }}</a>
-        </li>
-        {% endif %} {% endfor %}
+        {% for p in pages %}
+          {% if p.visible == true %}
+            {% assign url = page.url | split: '/' %}
+            <li class="hyde nav-item{% if p.url contains url[1] %} active {% endif %}">
+              <a href="{{ p.url }}">{{ p.title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
       </ul>
     </div>
   </nav>
